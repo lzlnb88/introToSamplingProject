@@ -23,6 +23,28 @@ data <- read.csv("olympic.csv")
 set.seed(999)
 srs_sample <- data[sample(nrow(data), 200), ]
 
+# Summary statistics for SRS
+n_srs <- 200
+N <- nrow(data)
+
+srs_ybar <- mean(srs_sample$HEIGHT)
+srs_s2 <- var(srs_sample$HEIGHT)
+
+# Olympic experience proportion
+# If the column name has a dot after reading csv, use OLYMPIC.EXPERIENCE
+srs_exp <- ifelse(srs_sample$OLYMPIC.EXPERIENCE == "Yes", 1, 0)
+srs_phat <- mean(srs_exp)
+
+srs_summary <- data.frame(
+  Sampling_Method = "SRS",
+  n = n_srs,
+  N = N,
+  ybar = srs_ybar,
+  s2 = srs_s2,
+  phat = srs_phat
+)
+
+srs_summary
 ```
 
 ## Stratified
