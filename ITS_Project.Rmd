@@ -23,6 +23,24 @@ data <- read.csv("olympic.csv")
 set.seed(999)
 srs_sample <- data[sample(nrow(data), 200), ]
 
+n <- 200
+N <- nrow(data)
+
+ybar <- mean(srs_sample$HEIGHT)
+s2 <- var(srs_sample$HEIGHT)
+
+exp_numeric <- ifelse(srs_sample$OLYMPIC.EXPERIENCE == "Yes", 1, 0)
+phat <- mean(exp_numeric)
+
+srs_summary <- data.frame(
+  n = n,
+  N = N,
+  ybar = ybar,
+  s2 = s2,
+  phat = phat
+)
+
+srs_summary
 ```
 
 ## Stratified
